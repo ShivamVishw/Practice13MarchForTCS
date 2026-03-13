@@ -301,9 +301,114 @@ public class Main {
         return -1;
     }
 
+    // LCM of two numbers
+    static int lcmOfTwoNumber(int num1, int num2){
+        return (num1*num2) / gcdOfTwoNumber(num1, num2);
+    }
 
+    // Check if a number is Harshad number
+    static boolean checkHarshadNumber(int num){
+        int sum =0;
+        int originalNum = num;
+        while(num>0){
+            sum += num%10;
+            num = num /10;
+        }
+        
+        return originalNum%sum==0;
+    }
 
+    // Check if the number is abundant number or not
+    static boolean checkAbundantNumber(int num){
+        int sum =0;
+        for(int i=1; i<= Math.sqrt(num); i++){
+            if(num %i==0){
+                if(i == num/i){
+                    System.out.println(i);
+                    sum += i;
+                }else{
+                    sum +=i;
+                    sum +=num/i;
+                    System.out.println(i);
+                    System.out.println(num/i);
+                }
+            }
+        }
 
+        // Subtract the number itself from the sum of divisors
+        sum -= num;
+
+        return sum>num; // if sum of divisors greater than actual number it means it's abundant number else not abundant number.
+    }
+
+    // Permutations in which N people can occupy R seats
+    // To find permutations of n people in r seats we have to find the value of n!/(n-r)!.The value of 5!/(5-3)! is 60.
+    static int permutationsOfNpeopleInRSeats(int N, int r){
+        
+        return factorialOfNumber(N)/factorialOfNumber(N-r);
+    }
+
+    // Program to Add two fractions
+    static int additionOfTwoFractions(int Numerator1, int Denominator1 , int Numerator2, int Denominator2){
+        
+
+        
+        return -1;
+
+    }
+
+    // Replace all 0s with 1s in a given integer
+    static int replaceZeroWithOne(int num){
+        int reversed = 0;
+        while(num >0){
+            int digit = num %10;
+
+            // Replace 0 with 1 digit
+            if(digit ==0){
+                digit =1;
+            }
+
+            reversed = reversed*10 + digit;
+
+            // divide number by 10
+            num = num/10;
+        }
+
+        // Now reverse thee reversed number to get final output
+        int finalNum=0;
+        while(reversed>0){
+            finalNum = finalNum*10 + reversed%10;
+            reversed = reversed/10;
+        }
+
+        return finalNum;
+    }
+
+    // Program to Find Roots of a quadratic equation
+    static void findRootsOfQuadraticEq(int a, int b, int c){
+        // calculate descriminant d
+        int d = b*b - 4*a*c;
+
+        // get sqrt of d 
+        double sqrt_val_d = Math.sqrt(Math.abs(d));
+
+        // check roots by d 
+        if(d>0){
+            System.out.println("Roots are real and both different");
+            double root1 = (-b + sqrt_val_d)/2.0*a;
+            double root2 = (-b - sqrt_val_d)/2.0*a;
+            System.out.println("Root 1: "+root1);
+            System.out.println("Root 2: "+root2);
+        }else if (d==0){
+            System.out.println("Roots are real but equal");
+            double root = (-b)/2.0*a;
+            System.out.println("Root 1: "+root);
+            System.out.println("Root 2: "+root);
+        }else{
+            System.out.println("Roots are imaginary");
+        }
+
+    }
 
 
     public static void main(String[] args) {
@@ -326,5 +431,11 @@ public class Main {
         // System.out.println(printPrimeFactorsOfNumber(35));
         // System.out.println(checkStrongNumb(145));
         // System.out.println(checkAutomorphicNumb(23));
+        // System.out.println(lcmOfTwoNumber(3, 6));
+        // System.out.println(checkHarshadNumber(378));
+        // System.out.println(checkAbundantNumber(21));
+        // System.out.println(permutationsOfNpeopleInRSeats(5, 3)); 
+        // System.out.println(replaceZeroWithOne(102003));
+        // findRootsOfQuadraticEq(1, -3, -10);
     }
 }
