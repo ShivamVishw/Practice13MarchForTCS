@@ -166,6 +166,43 @@ public class Main3 {
         return sum;
     }
 
+    // Capitalize first and last character of each word
+    static String capitalizeFirstAndLastLetter(String s){
+        String [] words = s.split(" ");
+        StringBuilder result = new StringBuilder();
+
+        for(String word : words){
+            if(word.length() ==1){
+                result.append(word.toUpperCase());
+            }else{
+                String newWord = Character.toUpperCase(word.charAt(0))+ word.substring(1, word.length()-1) + Character.toUpperCase(word.charAt(word.length()-1));
+                result.append(newWord);
+            }
+
+            result.append(" ");
+        }
+
+        return result.toString().trim();
+
+    }
+
+    // Calculate Frequency of characters in a String
+    static void countFreqOfAllChar(String s){
+        int [] freqArr = new int[26];
+
+        // Get the counts 
+        for(int i=0; i<s.length(); i++){
+            freqArr[s.charAt(i) -'a'] ++;
+        }
+
+        // Now print the character along with their count or frequencies..
+        for(int i=0; i<26; i++){
+            if(freqArr[i] !=0){
+                System.out.println((char) (i+'a') + ": " + freqArr[i]);
+            }
+        }
+    }
+
 
 
     public static void main(String[] args) {
@@ -179,6 +216,8 @@ public class Main3 {
         System.out.println(reverseString("I am iron man")); 
         System.out.println(removeBrackets("a+((b-c)+d)"));
         System.out.println(sumOfNumbersInString("123xyz2s5"));
+        System.out.println(capitalizeFirstAndLastLetter("hello world example"));
+        countFreqOfAllChar("programming");
 
         
     }
