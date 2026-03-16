@@ -134,8 +134,37 @@ public class Main3 {
         return result;
     }
 
-    // Sum of the numbers in a String
-    
+    // Sum of the numbers in a String (multiple consecutive digits are considered one number)
+    static int sumOfNumbersInString(String s){
+        int sum =0;
+        String temp = "";
+
+        for(int i=0; i<s.length(); i++){
+            char ch = s.charAt(i);
+
+            if(Character.isDigit(ch)){
+                temp += ch;
+            }
+            else {
+
+                // To avoid adding empty string check first 
+                if(!temp.isEmpty()){
+                    System.out.println("Current tmep which will be added "+temp);
+                    sum += Integer.parseInt(temp);
+                }
+                
+                temp = "";
+            }
+        }
+
+        // add last number   also to avoid empty string add issue check first
+        if(!temp.isEmpty()){
+            System.out.println("Current tmep which will be added "+temp);
+            sum += Integer.parseInt(temp);
+        }
+        
+        return sum;
+    }
 
 
 
@@ -149,5 +178,8 @@ public class Main3 {
         System.out.println(removeCharacterExceptAlphabets("take12% *&u ^$#forward"));
         System.out.println(reverseString("I am iron man")); 
         System.out.println(removeBrackets("a+((b-c)+d)"));
+        System.out.println(sumOfNumbersInString("123xyz2s5"));
+
+        
     }
 }
