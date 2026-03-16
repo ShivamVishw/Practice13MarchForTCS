@@ -1,5 +1,8 @@
 package StringProblem;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Main3 {
 
     // Check if a given string is palindrome or not
@@ -203,6 +206,61 @@ public class Main3 {
         }
     }
 
+    // Through Hashmap count frequencies of each character
+    static void countFreq(String s){
+        HashMap<Character, Integer> map = new HashMap<>();
+        
+        // Get the count 
+        for(char ch : s.toCharArray()){
+            if(!map.containsKey(ch)){
+                map.put(ch, map.getOrDefault(ch, 0)+1); // or map.put(ch, 1)
+            }else{
+                map.put(ch, map.get(ch)+1);
+            }
+        }
+
+        System.out.println(map);
+    }
+
+    // Find Non-repeating characters of a String
+    static void nonRepeatingCharInString(String s){
+        int freqArr[] = new int[26];
+
+        // get the count 
+        for(int i=0; i<s.length(); i++){
+            freqArr[s.charAt(i) - 'a'] ++;
+        }
+
+        // get non repeating ch in String 
+        for(int i=0; i<26; i++){
+            if(freqArr[i]!= 0 && freqArr[i]<2){
+                System.out.println("Non repeating characters are: "+ (char) (i + 'a'));
+            }
+        }
+    }
+
+    // Non repeating ch through map 
+    static void nonRepeatingch(String s){
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for(char ch : s.toCharArray()){
+            if(!map.containsKey(ch)){
+                map.put(ch, map.getOrDefault(ch, 0)+1);
+            }else{
+                map.put(ch, map.get(ch)+1);
+            }
+        }
+
+        // print the non repeating character in string
+        for(Map.Entry<Character, Integer> en: map.entrySet()){
+            if(en.getValue()<2){
+                System.out.println(en.getKey()+ " occours : "+ en.getValue()+ " times");
+            }
+        }
+    }
+
+    // Check if two strings are anagram of each other
+
 
 
     public static void main(String[] args) {
@@ -218,6 +276,9 @@ public class Main3 {
         System.out.println(sumOfNumbersInString("123xyz2s5"));
         System.out.println(capitalizeFirstAndLastLetter("hello world example"));
         countFreqOfAllChar("programming");
+        countFreq("programming");
+        nonRepeatingCharInString("yahoo");
+        nonRepeatingch("yahoo");
 
         
     }
