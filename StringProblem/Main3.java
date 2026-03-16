@@ -260,6 +260,101 @@ public class Main3 {
     }
 
     // Check if two strings are anagram of each other
+    static boolean checkIfAnagramsOfEachOther(String s1, String s2){
+        int freqArr[] = new int[26];
+
+        // base case 
+        if(s1.length() != s2.length()){
+            return false;
+        }
+
+        // increment count if occurs first times 
+        for(int i=0; i<s1.length(); i++){
+            freqArr[s1.charAt(i) - 'a'] ++;
+        }
+
+        // decrement count if occurs so if incremented before so that must be greter than 0 or if it still 0 it means not found in str1 so there value will become -1....;
+        for(int i=0; i<s2.length(); i++){
+            freqArr[s2.charAt(i) - 'a'] --;
+        }
+
+        // Now check if count is <0 i.e -1 or something that means there is any character which is not found in both string ... so no anagram of each other
+        for(int i=0; i< 26; i++){
+            if(freqArr[i] !=0){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // through map check if anagaram
+    static boolean checkIfAnagram(String s1 , String s2){
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for(char ch : s1.toCharArray()){
+            if(!map.containsKey(ch)){
+                map.put(ch, 1);
+            }else{
+                map.put(ch, map.get(ch)+1);
+            }
+        }
+        for(char ch : s2.toCharArray()){
+            if(!map.containsKey(ch) || map.get(ch) ==0){
+                return false;
+            }else{
+                map.put(ch, map.get(ch)-1);
+            }
+        }
+
+       return true;
+
+    }
+
+    // Maximum occurring character in a string
+    static char maximumCharacterInString(String s){
+        
+        int freqArr[] = new int[26];
+
+        // get the count 
+        for(int i=0; i<s.length(); i++){
+            freqArr[s.charAt(i) - 'a']++;
+        }
+
+        // now check the actual count of each characters
+        int maxcount = 0;
+        char maxOccuredChar = 'a';
+        for(int i=0; i<26; i++){
+            if(freqArr[i]> maxcount){
+                maxcount = freqArr[i];
+                maxOccuredChar = (char) (i+ 'a');
+            }
+        }
+        
+        return maxOccuredChar;
+    }
+
+    // Remove all duplicates from the input string.
+    static String removeAllDuplicates(String s){
+        HashMap<Character , Integer> map = new HashMap<>();
+        StringBuilder str = new StringBuilder();
+
+        // Add first element 
+        map.put(s.charAt(0), 1);
+        str.append(s.charAt(0));
+
+        for(int i=1; i<s.length(); i++){
+            char ch = s.charAt(i);
+            if(!map.containsKey(ch)){
+                str.append(ch);
+                map.put(ch, 1);
+            }else{
+                map.put(ch, map.get(ch)+1);
+            }
+        }
+
+        return str.toString();
+    }
 
 
 
@@ -279,7 +374,9 @@ public class Main3 {
         countFreq("programming");
         nonRepeatingCharInString("yahoo");
         nonRepeatingch("yahoo");
-
+        System.out.println(checkIfAnagramsOfEachOther("cat", "act"));
+        System.out.println(maximumCharacterInString("takeuforward"));
+        System.out.println(removeAllDuplicates("bcabefcccc"));
         
     }
 }
