@@ -439,6 +439,70 @@ public class Main3 {
         return newStr.toString();
     }
 
+    // Write a program to find the largest word in a given string.
+    static String findLargestWordInString(String s){
+        HashMap<String , Integer> map = new HashMap<>();
+        StringBuilder tempStr = new StringBuilder();
+        
+        // Get the individual Strings length stored into map 
+        for(int i=0; i<s.length(); i++){
+            char ch = s.charAt(i);
+            if(ch != ' '){
+                tempStr.append(ch);
+            }else{
+                map.put(tempStr.toString(), tempStr.length());
+                tempStr.delete(0, tempStr.length());
+            }
+        }
+
+        // Add last word
+        if(tempStr.length()>0){
+            map.put(tempStr.toString(), tempStr.length());
+        }
+
+        // Now check individual String length and based on that find out largest String
+        int maxLenStr =0;
+        String largestString = "";
+        for(Map.Entry<String, Integer> en: map.entrySet()){
+            if(en.getValue()>maxLenStr){
+                maxLenStr= en.getValue();
+                largestString = en.getKey();
+            }
+        }
+
+        return largestString;
+    }
+
+    // Find largest word in a string ....Through normal for loop and simplet 
+    static String findLargestStr(String s){
+        StringBuilder temp = new StringBuilder();
+        String largest = "";
+
+        for(int i =0; i<s.length(); i++){
+
+            char ch = s.charAt(i);
+
+            if(ch != ' '){
+                temp.append(ch);
+            }else {
+                if(temp.length()>0 && temp.length() > largest.length()){
+                    largest = temp.toString();
+                }  
+                temp.setLength(0);  
+            }
+        }
+
+        // check the last word 
+        if(temp.length() > largest.length()){
+            largest = temp.toString();
+        }
+
+        return largest;
+    }
+
+
+    // 
+
 
 
     public static void main(String[] args) {
@@ -463,6 +527,9 @@ public class Main3 {
         // printAllDuplicateCharInString("sinstriiintng");
         // printDuplicate("sinstriiintng");
         // System.out.println(removeCharacterFromFirstStringPersentInSecond("abzcdef", "cebbbfz"));
-        System.out.println(changeEveryLetterWithNextLexicographicAlph("abcdxyz"));
+        // System.out.println(changeEveryLetterWithNextLexicographicAlph("abcdxyz"));
+        String st = "this is somethign differrent";
+        System.out.println(findLargestWordInString(st));
+        System.out.println(findLargestStr(st));
     }
 }
