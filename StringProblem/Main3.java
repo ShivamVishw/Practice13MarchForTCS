@@ -1,6 +1,7 @@
 package StringProblem;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class Main3 {
@@ -395,7 +396,26 @@ public class Main3 {
     }
 
     // Remove characters from first string present in the second string
-    
+    static String removeCharacterFromFirstStringPersentInSecond(String s1, String s2){
+        // We only check presence, not frequency so HashSet not Hashmap.
+        HashSet<Character> setOfStr2 = new HashSet<>();
+        
+        // add character form str 2 into map 
+        for(char ch : s2.toCharArray()){
+            setOfStr2.add(ch);
+        }
+
+        StringBuilder finalStr = new StringBuilder();
+
+        // Now run for loop and take character in finalStr only .. which is not present in map 
+        for(char ch : s1.toCharArray()){
+            if(!setOfStr2.contains(ch)){
+                finalStr.append(ch);
+            }
+        }
+
+        return finalStr.toString();
+    }
 
 
 
@@ -418,7 +438,8 @@ public class Main3 {
         // System.out.println(checkIfAnagramsOfEachOther("cat", "act"));
         // System.out.println(maximumCharacterInString("takeuforward"));
         // System.out.println(removeAllDuplicates("bcabefcccc"));
-        printAllDuplicateCharInString("sinstriiintng");
-        printDuplicate("sinstriiintng");
+        // printAllDuplicateCharInString("sinstriiintng");
+        // printDuplicate("sinstriiintng");
+        System.out.println(removeCharacterFromFirstStringPersentInSecond("abzcdef", "cebbbfz"));
     }
 }
