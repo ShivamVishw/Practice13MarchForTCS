@@ -500,8 +500,82 @@ public class Main3 {
         return largest;
     }
 
+    // 20 queeeeeeeee
+    // Write a program to sort characters in a string
 
-    // 
+
+    // Count number of words in a given string
+    static int countNumberOfWordsInString(String s){
+        if(s.length()==0){
+            return 0;
+        }
+        int count =0;
+
+        for(int i =0 ; i < s.length(); i++){
+            char ch = s.charAt(i);
+
+            // check where the word starts ... so if curr ch is not space and previos char was space so it will be word and if i==0 so it means it's first word so that also we need to count ..
+            if(ch != ' ' && (i ==0 || s.charAt(i-1) == ' ')){
+                count ++;
+            }
+        }
+
+        return count;
+    }
+
+    // Write a program to find a word in a given string which has the highest number of repeated letters
+    
+    
+    // Change case of each character in a string
+    static String changeCaseOfEachString(String s){
+        StringBuilder newString = new StringBuilder();
+        for(int i=0; i<s.length(); i++){
+            char ch = s.charAt(i);
+            if(Character.isLowerCase(ch)){
+                newString.append(Character.toUpperCase(ch));
+            }else if(Character.isUpperCase(ch)){
+                newString.append(Character.toLowerCase(ch));
+            }else{
+                // keep other character unchanged
+                newString.append(ch);
+            }
+        }
+        return newString.toString();
+    }
+
+
+    // Concatenate one string to another
+    static String concatenateString(String s1, String s2){
+        StringBuilder sb = new StringBuilder();
+        sb.append(s1);
+        sb.append(s2);
+        return sb.toString();
+    }
+
+
+    // Write a program to find a substring within a string. If found display its starting position
+    static int findSubStringWithinAString(String s1, String s2){
+        
+        return -1;
+    }
+
+    // Reverse words in a string
+    static String reverseStringInString(String s){
+
+        StringBuilder temp = new StringBuilder();
+
+        for(int i=0; i<s.length(); i++){
+            char ch = s.charAt(i);
+
+            if(ch != ' '){
+                temp.append(ch);
+            }else{
+                
+            }
+        }
+        
+    }
+
 
 
 
@@ -528,8 +602,12 @@ public class Main3 {
         // printDuplicate("sinstriiintng");
         // System.out.println(removeCharacterFromFirstStringPersentInSecond("abzcdef", "cebbbfz"));
         // System.out.println(changeEveryLetterWithNextLexicographicAlph("abcdxyz"));
-        String st = "this is somethign differrent";
-        System.out.println(findLargestWordInString(st));
-        System.out.println(findLargestStr(st));
+        // String st = "this is somethign differrent";
+        // System.out.println(findLargestWordInString(st));
+        // System.out.println(findLargestStr(st));
+        // System.out.println(countNumberOfWordsInString("this      is"));
+        System.out.println(changeCaseOfEachString("jAVA"));
+    
+    
     }
 }
