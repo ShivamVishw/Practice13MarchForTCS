@@ -356,27 +356,69 @@ public class Main3 {
         return str.toString();
     }
 
+    // Print all the duplicates in the input string. 
+    static void printAllDuplicateCharInString(String s){
+
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for(char ch: s.toCharArray()){
+
+            if(!map.containsKey(ch)){
+                map.put(ch, 1);
+            }else{
+                map.put(ch, map.get(ch)+1);
+            }
+        }
+
+        // Chcek duplicates and print the data 
+        for(Map.Entry<Character, Integer> en: map.entrySet()){
+            if(en.getValue()>1){
+                System.out.println(en.getKey() + " occurs "+ en.getValue()+ " times");
+            }
+        }
+    }
+
+    // Print all duplicates through simple for loop
+    static void printDuplicate(String s){
+        int freqArr[] = new int[26];
+
+        for(int i =0; i<s.length(); i++){
+            freqArr[s.charAt(i) - 'a'] ++;
+        }
+
+        // output
+        for(int i=0; i<26; i ++){
+            if(freqArr[i] >1){
+                System.out.println((char) (i+ 'a') + " occurs "+ freqArr[i] + " times." );
+            }
+        }
+    }
+
+    // Remove characters from first string present in the second string
+    
+
 
 
     public static void main(String[] args) {
-        System.out.println(checkPalindromeString("NITIN", 0));
-        countVowelsConsonantesSpace("TAKE U FORWARD IS AWESOME");
-        char c = 'A';
-        System.out.println(findASCIIValue('D'));
-        System.out.println(removeVowels("TAKE U FORWARD IS AWESOME"));
-        System.out.println(removeSpace("TAKE U FORWARD IS AWESOME"));
-        System.out.println(removeCharacterExceptAlphabets("take12% *&u ^$#forward"));
-        System.out.println(reverseString("I am iron man")); 
-        System.out.println(removeBrackets("a+((b-c)+d)"));
-        System.out.println(sumOfNumbersInString("123xyz2s5"));
-        System.out.println(capitalizeFirstAndLastLetter("hello world example"));
-        countFreqOfAllChar("programming");
-        countFreq("programming");
-        nonRepeatingCharInString("yahoo");
-        nonRepeatingch("yahoo");
-        System.out.println(checkIfAnagramsOfEachOther("cat", "act"));
-        System.out.println(maximumCharacterInString("takeuforward"));
-        System.out.println(removeAllDuplicates("bcabefcccc"));
-        
+        // System.out.println(checkPalindromeString("NITIN", 0));
+        // countVowelsConsonantesSpace("TAKE U FORWARD IS AWESOME");
+        // char c = 'A';
+        // System.out.println(findASCIIValue('D'));
+        // System.out.println(removeVowels("TAKE U FORWARD IS AWESOME"));
+        // System.out.println(removeSpace("TAKE U FORWARD IS AWESOME"));
+        // System.out.println(removeCharacterExceptAlphabets("take12% *&u ^$#forward"));
+        // System.out.println(reverseString("I am iron man")); 
+        // System.out.println(removeBrackets("a+((b-c)+d)"));
+        // System.out.println(sumOfNumbersInString("123xyz2s5"));
+        // System.out.println(capitalizeFirstAndLastLetter("hello world example"));
+        // countFreqOfAllChar("programming");
+        // countFreq("programming");
+        // nonRepeatingCharInString("yahoo");
+        // nonRepeatingch("yahoo");
+        // System.out.println(checkIfAnagramsOfEachOther("cat", "act"));
+        // System.out.println(maximumCharacterInString("takeuforward"));
+        // System.out.println(removeAllDuplicates("bcabefcccc"));
+        printAllDuplicateCharInString("sinstriiintng");
+        printDuplicate("sinstriiintng");
     }
 }
