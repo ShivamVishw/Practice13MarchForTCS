@@ -417,6 +417,28 @@ public class Main3 {
         return finalStr.toString();
     }
 
+    // Change every letter with the next lexicographic alphabet in the given string
+    static String changeEveryLetterWithNextLexicographicAlph(String s){
+        StringBuilder newStr  = new StringBuilder();
+        
+        for(int i=0 ; i<s.length(); i++){
+            char ch = s.charAt(i);
+            int ascii = (int) ch;
+
+            if(ascii ==90) {  // Z, wrap to A
+                newStr.append((char) 65);
+            }else if(ascii == 122){ // z , wrap to a
+                newStr.append((char) 97);
+            }else if((ascii>=65 && ascii < 90) || (ascii>=97 || ascii<122)){  // for all alphanet A to Z and a to z
+                newStr.append((char) (ascii + 1));
+            }else{
+                newStr.append(ch); // leave other character unchanged 
+            }
+        }
+
+        return newStr.toString();
+    }
+
 
 
     public static void main(String[] args) {
@@ -440,6 +462,7 @@ public class Main3 {
         // System.out.println(removeAllDuplicates("bcabefcccc"));
         // printAllDuplicateCharInString("sinstriiintng");
         // printDuplicate("sinstriiintng");
-        System.out.println(removeCharacterFromFirstStringPersentInSecond("abzcdef", "cebbbfz"));
+        // System.out.println(removeCharacterFromFirstStringPersentInSecond("abzcdef", "cebbbfz"));
+        System.out.println(changeEveryLetterWithNextLexicographicAlph("abcdxyz"));
     }
 }
