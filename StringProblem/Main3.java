@@ -3,6 +3,7 @@ package StringProblem;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Stack;
 
 public class Main3 {
 
@@ -561,7 +562,7 @@ public class Main3 {
 
     // Reverse words in a string
     static String reverseStringInString(String s){
-
+        Stack<String> st = new Stack<>();
         StringBuilder temp = new StringBuilder();
 
         for(int i=0; i<s.length(); i++){
@@ -570,10 +571,26 @@ public class Main3 {
             if(ch != ' '){
                 temp.append(ch);
             }else{
-                
+                st.add(temp.toString());
+                temp.setLength(0);
+            }
+        }
+        // add last word 
+        if(temp.length()>0){
+            st.add(temp.toString());
+        }
+
+        // Get the reversed order word in a String
+        StringBuilder finalStr = new StringBuilder();
+        while(!st.isEmpty()){
+            finalStr.append(st.pop());
+            // after adding if stack becomes empty then no need to add space .... so
+            if(!st.isEmpty()){
+                finalStr.append(" ");
             }
         }
         
+        return finalStr.toString();
     }
 
 
@@ -606,8 +623,8 @@ public class Main3 {
         // System.out.println(findLargestWordInString(st));
         // System.out.println(findLargestStr(st));
         // System.out.println(countNumberOfWordsInString("this      is"));
-        System.out.println(changeCaseOfEachString("jAVA"));
-    
+        // System.out.println(changeCaseOfEachString("jAVA"));
+        System.out.println(reverseStringInString("This side Shivam"));
     
     }
 }
