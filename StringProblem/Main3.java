@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
 import java.util.Stack;
 
 public class Main3 {
@@ -736,12 +738,79 @@ public class Main3 {
 
     }
 
-    // 
+    // A gym offers membership plans based on the number of months a customer wants to enroll.
+    static String gymMembershipCost(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter number");
+        int months = sc.nextInt();
+
+        if(months<=0){
+            return "Invalid Input";
+        }else if(months ==1){
+            return "Cost: ₹2000";
+        }else if(months>=2 && months<=3){
+            return "Cost: ₹5000";
+        }else if(months>=4 && months <=6){
+            return "Cost: ₹9000";
+        }
+
+        return "Cost: ₹15000";
+    }
+
+    // Transaction Monitoring systems
+    static void transactionManagementSystem(){
+
+        // check duplicacy if sender and receiver is same in previous transcation 
+        Set<String> seen = new HashSet<>();
+
+        int prevTime = -1;
+
+        Scanner sc = new Scanner(System.in);
+        int n = 5 ;
+
+
+        for(int i =0; i<n; i++){
+            String sender = sc.next();
+            String receiver = sc.next();
+            int timestamp = sc.nextInt();
+            int amount = sc.nextInt();
+
+            // case 1: Dupplicate found 
+            String key = sender + "-" + receiver;
+
+            if(!seen.contains(key)){
+                seen.add(key);
+            }else{
+                System.out.println("Error: Duplicate Transaction");
+                return;
+            }
+
+
+            // case 2: Fraud case 
+            if(prevTime!=-1 && (timestamp-prevTime) > 60 ){
+                System.out.println("Fraud Detected");
+                return;
+            }
+
+            // update prevtrans
+            prevTime = timestamp;
+
+            
+            
+        }
+
+        // Else we are saying all transactions are valid
+        System.out.println("All Transactions Valid");
+        sc.close();
+    }
 
 
 
 
     public static void main(String[] args) {
+        transactionManagementSystem();
+
+        System.out.println(gymMembershipCost());
 
         System.out.println(numberOfSubstringWithAllChar1s("01101111"));
         System.out.println(numberOfSubstringWithAll("00110001111"));
