@@ -1,5 +1,6 @@
 package StringProblem;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -503,6 +504,26 @@ public class Main3 {
 
     // 20 queeeeeeeee
     // Write a program to sort characters in a string
+    // static String sortCharacterInString(String s){
+
+    //     char ChArr[] = s.toCharArray();
+    //     for(int i=0; i<=ChArr.length-2; i++){
+            
+    //         int min = (int) ChArr[i];
+    //         for(int j = i; j<=ChArr.length-1; j++){
+    //             if((int) (ChArr[j]) < ChArr[min]){
+    //                 min = (int) ChArr[j];
+    //             }
+    //         }
+
+    //         // Swap 
+    //         int temp = (char) min;
+    //         ChArr[i]= arr[i]; 
+    //         arr[i]= temp;
+
+
+    //     }
+    // }
 
 
     // Count number of words in a given string
@@ -593,10 +614,139 @@ public class Main3 {
         return finalStr.toString();
     }
 
+    // SelectionSort
+    static String selectionSort(int arr[]){
+        for(int i=0; i<=arr.length-2; i++){
+
+            int min = i;
+            for(int j=i; j<=arr.length-1; j++){
+                if(arr[j]< arr[min]){
+                    min =j;
+                }
+            }
+
+            int temp = arr[min];
+            arr[min]= arr[i];
+            arr[i]= temp;
+        }
+
+        return Arrays.toString(arr);
+    }
+
+    // Previous year question solving ............................************************..........
+    // 1. Selection Sorting
+    static String selectionSorting(int arr[]){
+
+        for(int i=0; i<=arr.length-2; i++){
+            int min = i;
+
+            for(int j= i; j<=arr.length-1; i++){
+                if(arr[j]<arr[min]){
+                    min =j;
+                }
+            }
+
+            // swap 
+            int temp = arr[i];
+            arr[i] = arr[min];
+            arr[min] = temp;
+        }
+
+        return Arrays.toString(arr);
+    }
+
+    // Given a String word, return true if the usage of capitals in it is right.
+    static boolean checkUsageOfCapitalsBasedOnCondition(String s){
+
+        // case 1 : All upercase
+        if(s.equals(s.toUpperCase())){
+            return true;
+        }
+
+        // case 2 : All lowercase
+        if(s.equals(s.toLowerCase())){
+            return true;
+        }
+
+        // case 3 : First letter capitals, rest is not capitals
+        if(Character.isUpperCase(s.charAt(0)) && s.substring(1).equals(s.substring(1).toLowerCase())){
+            return true;
+        }
+
+
+        return false;
+    }
+
+    // Return number of columns that you will delete
+    static int minDeleteColumns(String [] strs){
+        int deletionCount =0;
+
+        for(int col =0; col<strs[0].length(); col++){
+            for(int row =0; row<strs.length-1; row++){
+
+                if(strs[row].charAt(col) > strs[row+1].charAt(col)){  // Wrong condition means not in lexicographical order so deletioncount will be incremented by 1.
+                    deletionCount++;
+                    break;
+                }
+            }
+        }
+
+        return deletionCount;
+    }
+
+    // Binary string is given .......find number Of Substring With All Char 1'ss
+    static int numberOfSubstringWithAllChar1s(String s){
+
+        int count =0;
+        int result =0;
+
+        for(char ch : s.toCharArray()){
+            if(ch == '1'){
+                count ++;
+                result += count;
+            }else{
+                count=0;  // make it resset 
+            }
+        }
+        return result;
+
+    }
+
+    // same abouve with formula     
+    static int numberOfSubstringWithAll(String s){
+
+        int count =0;
+        int result =0;
+
+        for(char ch : s.toCharArray()){
+            if(ch == '1'){
+                count ++;
+            }else{
+                result += count *(count +1)/2;
+                count=0;  // make it resset 
+            }
+        }
+
+        // check last one 
+        if(count>0){
+            result += count*(count +1)/2;
+        }
+        return result;
+
+    }
+
+    // 
+
 
 
 
     public static void main(String[] args) {
+
+        System.out.println(numberOfSubstringWithAllChar1s("01101111"));
+        System.out.println(numberOfSubstringWithAll("00110001111"));
+        System.out.println(checkUsageOfCapitalsBasedOnCondition("gfdhdU"));
+        String strs[] = {"abc", "bca", "cee"};
+        System.out.println(minDeleteColumns(strs));
         // System.out.println(checkPalindromeString("NITIN", 0));
         // countVowelsConsonantesSpace("TAKE U FORWARD IS AWESOME");
         // char c = 'A';
@@ -624,7 +774,9 @@ public class Main3 {
         // System.out.println(findLargestStr(st));
         // System.out.println(countNumberOfWordsInString("this      is"));
         // System.out.println(changeCaseOfEachString("jAVA"));
-        System.out.println(reverseStringInString("This side Shivam"));
+        // System.out.println(reverseStringInString("This side Shivam"));
     
+        // int arr[] = {23,43,52,2,-2,78,56,4,2};
+        // System.out.println(selectionSort(arr));
     }
 }
