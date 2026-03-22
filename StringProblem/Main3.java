@@ -548,7 +548,27 @@ public class Main3 {
     }
 
     // Write a program to find a word in a given string which has the highest number of repeated letters
-    
+    static int highestNumberOfRepeatedLetters(String s){
+        Set<Character> st = new HashSet<>();
+        int count =0;
+        for(int i=0; i<s.length(); i++){
+            char ch = s.charAt(i);
+
+            if(ch !=' '){
+                if(!st.contains(ch)){
+                    st.add(ch);
+                }else{
+                    count ++;
+                }
+            }else{
+                count =0;
+            }
+
+            
+        }
+
+        return -1;
+    }
     
     // Change case of each character in a string
     static String changeCaseOfEachString(String s){
@@ -804,20 +824,46 @@ public class Main3 {
         sc.close();
     }
 
+    // Maximum subset with limit maxsum 
+    static int maxSubArrSub(int arr[], int idx, int curr, int max){
+
+        // base case 1 
+        if(curr>max){
+            return 0;
+        }
+
+        // base case 2
+        if(idx== arr.length){
+            return curr;
+        }
+
+        int inc = maxSubArrSub(arr, idx+1, curr+ arr[idx], max);
+
+        int exc = maxSubArrSub(arr, idx+1, curr, max);
+
+
+        return Math.max(inc, exc);
+
+    }
+
 
 
 
     public static void main(String[] args) {
-        transactionManagementSystem();
 
-        System.out.println(gymMembershipCost());
+        int arr[] = {2,3,5,7};
 
-        System.out.println(numberOfSubstringWithAllChar1s("01101111"));
-        System.out.println(numberOfSubstringWithAll("00110001111"));
-        System.out.println(checkUsageOfCapitalsBasedOnCondition("gfdhdU"));
-        String strs[] = {"abc", "bca", "cee"};
-        System.out.println(minDeleteColumns(strs));
-        // System.out.println(checkPalindromeString("NITIN", 0));
+        System.out.println(maxSubArrSub(arr, 0, 0, 10));
+        // transactionManagementSystem();
+
+        // System.out.println(gymMembershipCost());
+
+        // System.out.println(numberOfSubstringWithAllChar1s("01101111"));
+        // System.out.println(numberOfSubstringWithAll("00110001111"));
+        // System.out.println(checkUsageOfCapitalsBasedOnCondition("gfdhdU"));
+        // String strs[] = {"abc", "bca", "cee"};
+        // System.out.println(minDeleteColumns(strs));
+        // // System.out.println(checkPalindromeString("NITIN", 0));
         // countVowelsConsonantesSpace("TAKE U FORWARD IS AWESOME");
         // char c = 'A';
         // System.out.println(findASCIIValue('D'));
